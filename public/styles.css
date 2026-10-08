@@ -49,6 +49,8 @@ code { color: #293b31; font-family: "Noto Sans Telugu", "Nirmala UI", monospace;
 details { border-top: 1px solid #e6e9e2; margin-top: 10px; padding-top: 8px; }
 summary { color: var(--green); cursor: pointer; font-size: .78rem; }
 .full-id-list { line-height: 1.8; margin: 8px 0 0; overflow-wrap: anywhere; }
+.position-list { color: #435148; font-size: .8rem; line-height: 1.8; margin: 8px 0 0; padding-left: 24px; }
+.position-list code { font-size: .8rem; }
 .result-row p { color: #435148; line-height: 1.75; margin: 7px 0 0; }
 .result-meta a { color: var(--green); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 mark { background: #f3d9a8; color: inherit; padding: 0 2px; }

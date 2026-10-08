@@ -24,13 +24,13 @@ class PreprocessingTests(unittest.TestCase):
 
 
 class IndexTests(unittest.TestCase):
-    def test_builds_frequency_postings_and_document_ids(self):
+    def test_builds_frequency_postings_positions_and_document_ids(self):
         index = build_index(
             [{"id": "17", "title": "తెలుగు భాష", "text": "తెలుగు భాష తెలుగు."}],
             {"భాష"}, "wikimedia/wikipedia", "CC BY-SA", "https://example.test",
             {"source_documents": 10, "method": "test sample"})
-        self.assertEqual(index["postings"]["తెలుగు"], [["17", 3]])
-        self.assertEqual(index["postings"]["భాష"], [["17", 2]])
+        self.assertEqual(index["postings"]["తెలుగు"], [["17", 3, [0, 2, 4]]])
+        self.assertEqual(index["postings"]["భాష"], [["17", 2, [1, 3]]])
         self.assertEqual(index["documents"][0]["title"], "తెలుగు భాష")
         self.assertEqual(index["metadata"]["documents"], 1)
 
@@ -38,7 +38,7 @@ class IndexTests(unittest.TestCase):
         index = build_index([{"_id": "qrel-5", "text": "తెలుగు సమాచారం"}], set(),
                             "carlfeynman/Bharat_NanoMSMARCO_te", "CC-BY-4.0",
                             "https://example.test")
-        self.assertEqual(index["postings"]["తెలుగు"], [["qrel-5", 1]])
+        self.assertEqual(index["postings"]["తెలుగు"], [["qrel-5", 1, [0]]])
 
 
 if __name__ == "__main__":

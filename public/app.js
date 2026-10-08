@@ -10,8 +10,10 @@ function escapeHtml(value) {
 }
 
 function postingEntries(posting) {
-  if (Array.isArray(posting)) return posting.map(([id, tf]) => [String(id), Number(tf)]);
-  return Object.entries(posting || {}).map(([id, value]) => [id, Number(value[0])]);
+  if (Array.isArray(posting)) {
+    return posting.map(([id, tf, positions]) => [String(id), Number(tf), positions || []]);
+  }
+  return Object.entries(posting || {}).map(([id, value]) => [id, Number(value[0]), value[1] || []]);
 }
 
 function snippet(text, terms) {
@@ -63,9 +65,13 @@ function showResults(query) {
     const visibleIds = ids.slice(0, 100);
     const omitted = ids.length - visibleIds.length;
     const displayed = `[${visibleIds.join(", ")}${omitted ? ", …" : ""}]`;
+    const inspectedEntries = entries.slice(0, 20);
+    const inspectedPostings = inspectedEntries.map(([id, tf, positions]) =>
+      `<li><code>${escapeHtml(id)}</code>: tf=${tf}, positions=[${positions.join(", ")}]</li>`).join("");
     return `<article class="posting-row">
       <div class="posting-heading"><h3 lang="te">${escapeHtml(term)}</h3><span>${ids.length.toLocaleString()} documents</span></div>
       <p class="posting-expression"><code lang="te">${escapeHtml(term)} → ${displayed}</code></p>
+      <details><summary>Inspect term frequencies and positions${entries.length > inspectedEntries.length ? " (first 20 documents)" : ""}</summary><ol class="position-list">${inspectedPostings}</ol></details>
       ${omitted ? `<details><summary>Show all ${ids.length.toLocaleString()} document IDs</summary><p class="full-id-list"><code>[${ids.join(", ")}]</code></p></details>` : ""}
     </article>`;
   }).join("");

@@ -23,13 +23,13 @@ The index contains 221,650 terms and about 2.5 million tokens before stopword fi
 
 ## Index and Retrieval
 
-Each posting stores a document ID and term frequency:
+Each posting stores a document ID, term frequency, and the zero-based token positions where the term occurs:
 
 ```text
-term → [[document_id, term_frequency], ...]
+term → [[document_id, term_frequency, [position, ...]], ...]
 ```
 
-The page displays the posting document IDs directly and separately shows up to ten ranked articles using TF-IDF-style term weighting. Article titles are indexed along with article text. Source IDs are preserved, and each document entry contains a short preview and its source URL.
+For example, a term might have a posting such as `తెలుగు → [[859, 3, [0, 14, 28]], ...]`. Positions are counted over the token sequence formed from the article title followed by its text; stopwords are included so offsets remain faithful to that sequence. The page displays the posting document IDs directly and separately shows up to ten ranked articles using TF-IDF-style term weighting. Article titles are indexed along with article text. Source IDs are preserved, and each document entry contains a short preview and its source URL.
 
 ## Preprocessing
 
@@ -40,7 +40,6 @@ The builder applies the following steps to article text and titles:
 3. Extract Telugu, Latin, and numeric tokens; punctuation separates tokens.
 4. Keep stopwords in postings, but exclude them from ranked queries.
 5. Do not stem or lemmatize Telugu words.
-
 
 ## Optional Benchmark Corpus
 
@@ -69,6 +68,7 @@ Open `http://localhost:8000`. The builder downloads and caches the prepared Telu
 ```bash
 python -m unittest discover -s tests -v
 ```
+
 ## Deployment
 
 The live app is hosted on Vercel. To deploy a changed version, import `gokul-git367/telugu-inverted-index` into Vercel; `vercel.json` sets `public/` as the static output directory. No frontend build command is needed. Rebuild and commit `public/index.json` before deployment if the corpus index has changed.

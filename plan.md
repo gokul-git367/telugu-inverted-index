@@ -19,7 +19,7 @@ The default sample cap keeps the generated static browser index practical. Chang
 Keep it modest and demonstrable:
 
 1. A reproducible script that downloads the data and builds the index.
-2. A term-frequency inverted index: `term -> [[document_id, term_frequency], ...]`.
+2. A positional inverted index: `term -> [[document_id, term_frequency, [positions...]], ...]`.
 3. Ranked keyword search for normal Telugu queries.
 4. Exact-phrase search for quoted Telugu queries, if time permits.
 5. A command-line interface is sufficient; a web app is **not** required.
@@ -56,12 +56,12 @@ Example output shown by the page:
 For every document, compute token frequencies and update:
 
 ```text
-postings[term].append([doc_id, term_frequency])
+postings[term].append([doc_id, term_frequency, positions])
 document_lengths[doc_id] = number_of_non_stopword_tokens
 document_frequency[term] = number_of_documents_containing_term
 ```
 
-The browser JSON stores compact term-frequency postings, document titles, source URLs, and 900-character article previews. The page derives the requested `term → [document IDs]` display from each posting list. Token positions are not currently stored, so exact phrase retrieval is not claimed.
+Positions are zero-based in the token sequence formed from title followed by article text. Stopwords are included in positional postings, preserving original offsets. The browser JSON also stores document titles, source URLs, and 900-character article previews. The page derives the requested `term → [document IDs]` display from each posting list.
 
 Ranking uses TF-IDF-style term weighting over the union of matching documents. Results link to the original Wikipedia article when a source URL is available.
 
@@ -90,7 +90,7 @@ The default Wikipedia source has no matching relevance labels. Demonstrate posti
 - The corpus is translated/adapted Telugu content and may contain occasional English fragments or translation artefacts; describe this as a dataset limitation.
 - Because there are only 50 queries and likely one judged relevant document per query, treat results as a small benchmark, not a broad claim of Telugu-search quality.
 - Do not use an LLM, embeddings, or a search-engine library to create the core index. The assignment should visibly implement the posting lists and scoring itself.
-- The current default artifact is intentionally non-positional and uses TF-IDF-style ranking; do not claim phrase search or transfer benchmark metrics to the Wikipedia corpus.
+- The current index is positional; ranked retrieval uses TF-IDF-style ranking. Do not claim phrase search unless adjacency matching is implemented, and do not transfer benchmark metrics to the Wikipedia corpus.
 
 ## Sources to cite
 

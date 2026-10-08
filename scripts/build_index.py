@@ -91,8 +91,11 @@ def build_index(rows, words, dataset, license_name, source_url, sample_info=None
         if row.get("url"):
             document["url"] = row["url"]
         documents.append(document)
-        for term, frequency in counts.items():
-            postings[term].append([doc_id, frequency])
+        positions = defaultdict(list)
+        for position, term in enumerate(tokens):
+            positions[term].append(position)
+        for term, term_positions in positions.items():
+            postings[term].append([doc_id, len(term_positions), term_positions])
 
     demo_candidates = ["తెలుగు", "భాష", "ఆంధ్రప్రదేశ్", "భారతదేశం", "స్థానిక", "గుంటూరు"]
     demo_terms = [term for term in demo_candidates if term in postings and term not in words]
@@ -116,7 +119,7 @@ def build_index(rows, words, dataset, license_name, source_url, sample_info=None
         "average_document_length": round(indexed_tokens / len(documents), 2) if documents else 0,
         "snippet_characters": SNIPPET_LENGTH,
         "preprocessing": "HTML entity/tag cleanup; whitespace collapse; NFC normalization; case folding; Telugu/Latin/digit tokenization; stopwords excluded from ranking; no stemming.",
-        "index_type": "term -> [[document_id, term_frequency], ...]",
+        "index_type": "positional inverted index: term -> [[document_id, term_frequency, positions], ...]",
         "demo_terms": demo_terms,
     }
     return {"metadata": metadata, "stopwords": sorted(words), "documents": documents,

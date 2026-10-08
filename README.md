@@ -50,4 +50,4 @@ python -m unittest discover -s tests -v
 
 ## Deployed Vercel app
 
-[telugu-inverted-index](telugu-inverted-index-public-7n52fhqdf.vercel.app)
+[telugu-inverted-index](https://telugu-inverted-index-public-qcdhayypu.vercel.app/)

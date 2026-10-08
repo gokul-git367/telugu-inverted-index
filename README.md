@@ -50,4 +50,4 @@ python -m unittest discover -s tests -v
 
 ## Deploy
 
-The static site is served from `public/` by Vercel. Rebuild `public/index.json` before deployment so the dataset and generated metadata match the intended source.
+[telugu-inverted-index](telugu-inverted-index-public-7n52fhqdf.vercel.app)

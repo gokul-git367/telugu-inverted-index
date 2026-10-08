@@ -1,4 +1,4 @@
-# తెలుగు సమాచార పునఃప్రాప్తి
+# తెలుగు Information Retrieval
 
 A browser-based Telugu information-retrieval assignment. The default build indexes a deterministic, evenly spread sample of 6,000 cleaned Telugu Wikipedia articles from Wikimedia's 2023-11-01 snapshot. The full 87,900-row source is available through Hugging Face; this project samples it to keep the static index practical.
 

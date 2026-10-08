@@ -1,0 +1,65 @@
+:root {
+	color: #1e2923;
+	background: #f3f2eb;
+	font-family: "Noto Sans Telugu", "Nirmala UI", sans-serif;
+	font-synthesis: none;
+	--ink: #1e2923;
+	--muted: #68746c;
+	--line: #d3d9cf;
+	--green: #245747;
+	--surface: #fbfcf8;
+	--signal: #b44e34;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: linear-gradient(180deg, #e8eee5 0, #f3f2eb 440px); min-height: 100vh; }
+main { width: min(960px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 72px; }
+.page-header { border-bottom: 1px solid var(--line); padding: 0 0 34px; }
+.eyebrow, .section-kicker { color: var(--green); font-size: .76rem; font-weight: 700; margin: 0; }
+h1 { font-family: "Noto Serif Telugu", "Nirmala UI", serif; font-size: 2.45rem; line-height: 1.35; margin: 13px 0 7px; max-width: 740px; }
+.intro { color: #4f5e54; font-size: 1rem; line-height: 1.8; margin: 0; }
+.collection-stats { display: flex; gap: 34px; margin-top: 24px; }
+.collection-stats div { display: grid; gap: 2px; }
+.collection-stats strong { color: var(--green); font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+.collection-stats span, .section-heading > span { color: var(--muted); font-size: .8rem; }
+.search-panel { border-bottom: 1px solid var(--line); padding: 27px 0 23px; }
+h2 { font-family: "Noto Serif Telugu", "Nirmala UI", serif; font-size: 1.23rem; line-height: 1.5; margin: 0; }
+.search-panel h2 { margin-bottom: 12px; }
+form { display: flex; gap: 9px; }
+input { background: var(--surface); border: 1px solid #aebbb0; border-radius: 5px; color: var(--ink); flex: 1; font: inherit; min-width: 0; padding: 12px 14px; }
+input:focus-visible, button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #d28b52; outline-offset: 2px; }
+button { cursor: pointer; font: inherit; }
+.submit-button { background: var(--green); border: 1px solid var(--green); border-radius: 5px; color: white; font-weight: 700; padding: 0 18px; }
+.submit-button:hover { background: #193f34; }
+.submit-button:disabled { cursor: wait; opacity: .6; }
+.demo-label { color: var(--muted); font-size: .77rem; margin: 15px 0 7px; }
+.demo-terms { display: flex; flex-wrap: wrap; gap: 7px; }
+.demo-term { background: transparent; border: 1px solid #b8c6b9; border-radius: 4px; color: #285b49; padding: 4px 9px; }
+.demo-term:hover { background: #e4ece2; border-color: var(--green); }
+#status { color: var(--muted); font-size: .8rem; min-height: 20px; margin: 13px 0 0; }
+.index-section, .results-section { padding: 27px 0 8px; }
+.results-section { border-top: 1px solid var(--line); margin-top: 26px; }
+.section-heading { align-items: end; display: flex; justify-content: space-between; margin-bottom: 12px; }
+.section-kicker { color: var(--signal); font-size: .65rem; margin-bottom: 4px; }
+.posting-row, .result-row { background: var(--surface); border: 1px solid #dce1d8; border-radius: 5px; margin: 8px 0; padding: 13px 15px; }
+.posting-heading { align-items: baseline; display: flex; gap: 12px; }
+.posting-heading h3 { color: var(--green); font-family: inherit; font-size: 1rem; margin: 0; }
+.posting-heading span, .result-meta { color: var(--muted); font-size: .75rem; }
+.posting-expression { line-height: 1.8; margin: 5px 0 0; overflow-wrap: anywhere; }
+code { color: #293b31; font-family: "Noto Sans Telugu", "Nirmala UI", monospace; font-size: .88rem; }
+details { border-top: 1px solid #e6e9e2; margin-top: 10px; padding-top: 8px; }
+summary { color: var(--green); cursor: pointer; font-size: .78rem; }
+.full-id-list { line-height: 1.8; margin: 8px 0 0; overflow-wrap: anywhere; }
+.result-row p { color: #435148; line-height: 1.75; margin: 7px 0 0; }
+.result-meta a { color: var(--green); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+mark { background: #f3d9a8; color: inherit; padding: 0 2px; }
+footer { align-items: center; border-top: 1px solid var(--line); color: var(--muted); display: flex; flex-wrap: wrap; font-size: .76rem; gap: 8px 20px; justify-content: space-between; padding: 17px max(20px, calc((100% - 960px) / 2)); }
+footer a { color: var(--green); }
+.sr-only { clip: rect(0, 0, 0, 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+@media (max-width: 600px) {
+	main { padding: 36px 0 52px; width: min(100% - 28px, 960px); }
+	h1 { font-size: 1.8rem; }
+	form { display: grid; }
+	.submit-button { min-height: 44px; }
+	.section-heading { align-items: start; flex-direction: column; gap: 4px; }
+	footer { padding-left: 14px; padding-right: 14px; }
+}

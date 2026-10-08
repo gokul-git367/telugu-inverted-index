@@ -1,5 +1,9 @@
 # తెలుగు Information Retrieval
 
+## Deploy to Vercel
+
+Import `gokul-git367/telugu-inverted-index` into Vercel and select the **Other** framework preset. Leave the build command empty and use `public` as the output directory; these settings are already declared in `vercel.json`. Vercel serves the static files directly, so `public/index.json` must be present and up to date before deployment. To refresh the corpus, run `python scripts/build_index.py` locally and commit the generated index. Once the repository is connected, pushing to `main` triggers a deployment.
+
 A browser-based Telugu information-retrieval assignment. The default build indexes a deterministic, evenly spread sample of 6,000 cleaned Telugu Wikipedia articles from Wikimedia's 2023-11-01 snapshot. The full 87,900-row source is available through Hugging Face; this project samples it to keep the static index practical.
 
 ## Index and retrieval

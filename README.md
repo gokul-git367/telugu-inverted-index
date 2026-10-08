@@ -48,6 +48,6 @@ Optional: `python scripts/build_index.py --limit 3000` creates a smaller systema
 python -m unittest discover -s tests -v
 ```
 
-## Deploy
+## Deployed Vercel app
 
 [telugu-inverted-index](telugu-inverted-index-public-7n52fhqdf.vercel.app)

@@ -1,6 +1,6 @@
 # తెలుగు Information Retrieval Positional and Inverted Index interpretation
 
-**Live app:** [తెలుగు Information Retrieval](https://telugu-inverted-index-public-qcdhayypu.vercel.app/)
+**Live app:** [తెలుగు Information Retrieval](https://telugu-inverted-index-public.vercel.app/)
 
 ## 1. Project Overview
 
